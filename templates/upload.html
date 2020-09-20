@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文件上传</title>
+    <script type="text/javascript">
+        function upload(event) {
+            const formData = new FormData();
+            formData.append('upload_file', event.target.files[0]);
+            fetch('/upload', {
+                method: 'post',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => document.getElementById("link").innerText = data['download_link'])
+        }
+     </script>
+</head>
+<body>
+    <div>上传文件成功后将返回一个链接，每个链接默认有效下载次数为3次。可以使用浏览器或下载器进行下载。</div>
+    <input type="file" name="file" id="file" onchange="upload(event)"/>
+    <div>文件下载链接：<label id="link"></label></div>
+</body>
+</html>
