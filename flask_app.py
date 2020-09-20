@@ -28,7 +28,7 @@ app = Flask(__name__)
 directory = os.path.join(os.path.dirname(__file__), 'files/')
 aescryptor = getcryptor()
 
-@app.route('/225')
+@app.route('/home')
 def index():
     return render_template("upload.html")
 
@@ -94,6 +94,8 @@ def download_file():
     abort(404)
 
 
+if __name__ == '__main__':
+    app.run(port=10001, debug=True)
 
 
 
