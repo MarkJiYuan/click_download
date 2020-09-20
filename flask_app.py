@@ -10,6 +10,7 @@ from flask import (
     send_from_directory,
     abort
 )
+from flask_cors import CORS
 from click_encrypt import getcryptor
 from click_orm import File, create, update, retrieve, delete
 
@@ -25,6 +26,7 @@ file_type_map = {
 }
 
 app = Flask(__name__)
+CORS(app)
 directory = os.path.join(os.path.dirname(__file__), 'files/')
 aescryptor = getcryptor()
 
