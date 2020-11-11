@@ -14,6 +14,14 @@ from flask_cors import CORS
 from click_encrypt import getcryptor
 from click_orm import File, create, update, retrieve, delete
 
+from configparser import ConfigParser
+cp = ConfigParser()
+cp.read(os.path.abspath('settings.conf'))
+
+host = cp.get('flask_app', 'host')
+port = cp.get('flask_app', 'port')
+
+
 file_type_map = {
     "application/pdf": "pdf",
     "application/vnd.openxmlformats-officedocument.presentationml.presentation": "pptx",
@@ -41,7 +49,7 @@ def upload_file():
     # 文件名
     name = f.filename.split(".")[0]
     # 文件后缀
-    filetype = file_type_map[f.mimetype]
+    filetype = file_type_map.get(f.mimetype, None)
 
     # 文件密钥
     text = name[:15] + str(round(time.time(), 6))
@@ -69,7 +77,7 @@ def upload_file():
     update(File.id == row_num, {"path": path})
 
     return {
-        "download_link": f"http://127.0.0.1:5000/download?en_text={en_text}"
+        "download_link": f"{host}:{port}/download?en_text={en_text}"
     }
     
 @app.route('/download', methods=['GET'])
@@ -98,7 +106,7 @@ def download_file():
 
 if __name__ == '__main__':
     from waitress import serve
-    serve(app, listen='*:10000')
+    serve(app, listen='*:{port}')
 
 
 

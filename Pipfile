@@ -12,6 +12,7 @@ pymysql = "*"
 pycrypto = "*"
 gunicorn = "*"
 flask-cors = "*"
+waitress = "*"
 
 [requires]
 python_version = "3.7"
