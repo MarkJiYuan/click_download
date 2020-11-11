@@ -106,7 +106,7 @@ def download_file():
 
 if __name__ == '__main__':
     from waitress import serve
-    serve(app, listen='*:{port}')
+    serve(app, listen=f'*:{port}')
 
 
 
