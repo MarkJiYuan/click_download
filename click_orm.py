@@ -21,7 +21,6 @@ engine = create_engine(f"mysql+pymysql://{username}:{password}@localhost:{port}/
 # 创建DBSession类型:
 DBSession = sessionmaker(bind=engine)
 
-
 # 定义User对象:
 class File(Base):
     # 表的名字:

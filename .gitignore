@@ -5,3 +5,5 @@ files/*
 !files/files.txt
 
 settings.conf
+
+.vscode
