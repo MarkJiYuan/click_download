@@ -30,7 +30,10 @@ file_type_map = {
     "image/png": "png",
     "image/jpeg": "jpeg",
     "text/markdown": "md",
-    "application/msword": "doc"
+    "application/msword": "doc",
+    "application/zip": "zip",
+    "application/vnd.rar": "rar",
+    "application/x-7z-compressed": "7z"
 }
 
 app = Flask(__name__)
